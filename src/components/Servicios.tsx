@@ -57,11 +57,11 @@ const services = [
 
 export default function Servicios() {
   return (
-    <section id="servicios" className="section-padding bg-white">
+    <section id="servicios" className="section-padding bg-slate-50">
       <div className="container-custom">
         <p className="eyebrow mb-8">03 &mdash; Servicios</p>
         
-        <h2 className="font-serif text-4xl md:text-5xl text-slate-900 mb-16">
+        <h2 className="font-sans font-bold text-4xl md:text-5xl text-slate-900 mb-16">
           Lo que construimos.
         </h2>
         
@@ -69,13 +69,13 @@ export default function Servicios() {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="p-8 border border-slate-200 rounded-xl hover:border-blue-200 hover:shadow-sm hover:bg-blue-50/30 transition-all duration-300 group flex flex-col h-full"
+              className="p-8 bg-white rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,69,139,0.08)] hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full border border-transparent hover:border-brand/10"
             >
-              <div className="text-slate-400 group-hover:text-blue-600 transition-colors mb-6">
+              <div className="text-slate-400 group-hover:text-brand transition-colors mb-6">
                 {service.icon}
               </div>
               
-              <h3 className="font-serif text-2xl text-slate-900 mb-4">
+              <h3 className="font-sans font-bold text-2xl text-slate-900 mb-4">
                 {service.title}
               </h3>
               
@@ -84,7 +84,7 @@ export default function Servicios() {
               </p>
               
               <div className="mt-auto">
-                <span className="font-mono uppercase tracking-[0.1em] text-xs font-semibold text-slate-400 group-hover:text-blue-600 transition-colors">
+                <span className="font-mono uppercase tracking-[0.1em] text-xs font-semibold text-slate-400 group-hover:text-brand transition-colors">
                   Consultar precio
                 </span>
               </div>
