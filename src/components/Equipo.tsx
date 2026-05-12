@@ -1,6 +1,10 @@
+import Image from "next/image";
+import AnimateIn from "./AnimateIn";
+
 const team = [
   {
     name: "Nicolás Petito",
+    photo: "/images/nicolas.png",
     role: "Ingeniero de Software",
     expertise: "Next.js + Supabase. Webs y sistemas para PyMEs.",
     link: "https://portafolio-six-kappa-90.vercel.app/",
@@ -9,6 +13,7 @@ const team = [
   },
   {
     name: "Pedro Agüero",
+    photo: "/images/pedro.jpeg",
     role: "Ingeniero de Software",
     expertise: "Backend, SaaS B2B, arquitectura multi-tenant.",
     link: "https://portfoliopedroaguero.vercel.app/",
@@ -17,6 +22,7 @@ const team = [
   },
   {
     name: "Valentino Giungi",
+    photo: "/images/valentino.jpeg",
     role: "Ingeniero de Software",
     expertise: "Full Stack + IA + datos en tiempo real.",
     link: "https://portfoliovalentinogiungi.vercel.app/",
@@ -29,18 +35,29 @@ export default function Equipo() {
   return (
     <section id="equipo" className="section-padding bg-white border-t border-slate-100">
       <div className="container-custom">
-        <p className="font-mono uppercase tracking-[0.18em] text-brand text-sm font-bold mb-8">05 &mdash; Equipo</p>
-        
-        <h2 className="font-sans font-bold text-4xl md:text-5xl text-slate-900 mb-16">
-          Quiénes somos.
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <AnimateIn>
+          <p className="eyebrow mb-8">06 &mdash; Equipo</p>
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-slate-900 mb-4">
+            Quiénes somos.
+          </h2>
+          <span aria-hidden="true" className="block h-0.5 w-10 bg-brand rounded-full mb-16" />
+        </AnimateIn>
+
+        <AnimateIn delay={100}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {team.map((member, index) => (
-            <div 
+            <div
               key={index}
-              className="group p-8 bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 rounded-2xl transition-all"
+              className="group p-8 bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 rounded-2xl transition-all flex flex-col"
             >
+              <div className="relative w-20 h-20 rounded-full overflow-hidden mb-6 ring-2 ring-brand/15">
+                <Image
+                  src={member.photo}
+                  alt={member.name}
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
               <h3 className="font-sans font-bold text-2xl text-slate-900 mb-2">
                 {member.name}
               </h3>
@@ -78,7 +95,8 @@ export default function Equipo() {
               </div>
             </div>
           ))}
-        </div>
+          </div>
+        </AnimateIn>
       </div>
     </section>
   );

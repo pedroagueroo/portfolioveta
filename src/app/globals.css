@@ -2,7 +2,7 @@
 
 @theme inline {
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --color-brand: #00458B;
   --color-brand-dark: #00366D;
@@ -10,6 +10,36 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes accent-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.accent-line {
+  display: block;
+  height: 2px;
+  width: 2.5rem;
+  background-color: var(--color-brand);
+  border-radius: 9999px;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.accent-line.is-visible {
+  animation: accent-grow 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
 }
 
 body {
@@ -22,7 +52,7 @@ body {
 /* Custom classes for layout to avoid repetition */
 @layer utilities {
   .eyebrow {
-    @apply font-mono uppercase tracking-[0.18em] text-slate-400 text-sm font-medium;
+    @apply font-mono uppercase tracking-[0.18em] text-brand text-sm font-bold;
   }
   .section-padding {
     @apply py-24 md:py-32;

@@ -55,42 +55,49 @@ const services = [
   }
 ];
 
+import AnimateIn from "./AnimateIn";
+
 export default function Servicios() {
   return (
     <section id="servicios" className="section-padding bg-slate-50">
       <div className="container-custom">
-        <p className="eyebrow mb-8">03 &mdash; Servicios</p>
-        
-        <h2 className="font-sans font-bold text-4xl md:text-5xl text-slate-900 mb-16">
-          Lo que construimos.
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div 
-              key={index}
-              className="p-8 bg-white rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,69,139,0.08)] hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full border border-transparent hover:border-brand/10"
-            >
-              <div className="text-slate-400 group-hover:text-brand transition-colors mb-6">
-                {service.icon}
+        <AnimateIn>
+          <p className="eyebrow mb-8">03 &mdash; Servicios</p>
+          <h2 className="font-sans font-bold text-4xl md:text-5xl text-slate-900 mb-4">
+            Lo que construimos.
+          </h2>
+          <span aria-hidden="true" className="block h-0.5 w-10 bg-brand rounded-full mb-16" />
+        </AnimateIn>
+
+        <AnimateIn delay={100}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="p-8 bg-white rounded-2xl shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,69,139,0.08)] hover:-translate-y-1 transition-all duration-300 group flex flex-col border border-transparent hover:border-brand/10"
+              >
+                <div className="text-slate-400 group-hover:text-brand transition-colors mb-6">
+                  {service.icon}
+                </div>
+                <h3 className="font-sans font-bold text-2xl text-slate-900 mb-4">
+                  {service.title}
+                </h3>
+                <p className="text-slate-600 mb-8 flex-grow">
+                  {service.description}
+                </p>
+                <div className="mt-auto">
+                  <a
+                    href="#contacto"
+                    className="font-mono uppercase tracking-[0.1em] text-xs font-semibold text-slate-400 group-hover:text-brand transition-colors inline-flex items-center gap-1.5"
+                  >
+                    Consultar precio
+                    <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                  </a>
+                </div>
               </div>
-              
-              <h3 className="font-sans font-bold text-2xl text-slate-900 mb-4">
-                {service.title}
-              </h3>
-              
-              <p className="text-slate-600 mb-8 flex-grow">
-                {service.description}
-              </p>
-              
-              <div className="mt-auto">
-                <span className="font-mono uppercase tracking-[0.1em] text-xs font-semibold text-slate-400 group-hover:text-brand transition-colors">
-                  Consultar precio
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </AnimateIn>
       </div>
     </section>
   );
