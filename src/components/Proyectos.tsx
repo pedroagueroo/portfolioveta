@@ -29,7 +29,7 @@ const projects = [
     description: "Plataforma completa de finanzas personales con gestión de billeteras, gráficos, objetivos y seguimiento del dólar en tiempo real.",
     stack: ["React", "Next.js", "Supabase"],
     demo: "https://equalsgestion.com/",
-    image: "/images/equals.png"
+    image: "/images/equals.jpg"
   },
   {
     authors: "Nicolás Petito",
