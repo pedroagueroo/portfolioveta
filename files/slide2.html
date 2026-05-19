@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1080px; overflow: hidden; background: #ffffff; font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif; }
+
+  .bg-num {
+    position: absolute; top: -30px; right: -20px;
+    font-size: 380px; font-weight: 900;
+    color: rgba(0,69,139,0.04); line-height: 1;
+    font-family: 'Arial Black', sans-serif;
+    pointer-events: none; user-select: none;
+  }
+  .wrap {
+    position: relative; z-index: 2;
+    width: 100%; height: 100%;
+    padding: 52px 56px 48px 56px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .eyebrow {
+    font-family: 'Courier New', monospace;
+    font-size: 13px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: #00458B; font-weight: 700;
+  }
+  .num {
+    position: absolute; top: 52px; right: 56px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px; color: rgba(10,15,28,0.18);
+  }
+  .headline {
+    font-size: 66px; font-weight: 900;
+    line-height: 0.97; letter-spacing: -0.02em; color: #0a0f1c;
+    margin-bottom: 32px;
+  }
+  .accent { color: #00458B; }
+  .errors { display: flex; flex-direction: column; gap: 14px; }
+  .err {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 20px; border-radius: 12px;
+    background: rgba(239,68,68,0.06);
+    border-left: 4px solid #ef4444;
+  }
+  .x-circle {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #ef4444; color: white;
+    font-size: 13px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+    font-family: Arial, sans-serif;
+  }
+  .err-title {
+    font-family: Arial, sans-serif; font-size: 17px;
+    font-weight: 700; color: #0a0f1c; margin-bottom: 4px;
+  }
+  .err-sub {
+    font-family: Arial, sans-serif; font-size: 14px; color: #64748b;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-sq {
+    width: 36px; height: 36px; background: #00458B; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-text { font-size: 18px; font-weight: 900; letter-spacing: 0.2em; color: #0a0f1c; }
+</style>
+</head>
+<body>
+  <div class="bg-num">3</div>
+  <div class="wrap">
+    <div><span class="eyebrow">Errores que cuestan caro</span></div>
+    <span class="num">02/05</span>
+    <div>
+      <p class="headline">Lo que nadie<br>te dice antes<br>de <span class="accent">contratar.</span></p>
+      <div class="errors">
+        <div class="err">
+          <div class="x-circle">✕</div>
+          <div>
+            <p class="err-title">Elegir por precio, no por proceso</p>
+            <p class="err-sub">El más barato raramente entiende tu negocio.</p>
+          </div>
+        </div>
+        <div class="err">
+          <div class="x-circle">✕</div>
+          <div>
+            <p class="err-title">Hablar con un vendedor, no con quien programa</p>
+            <p class="err-sub">El teléfono descompuesto mata los proyectos.</p>
+          </div>
+        </div>
+        <div class="err">
+          <div class="x-circle">✕</div>
+          <div>
+            <p class="err-title">No ver el proyecto hasta que "está listo"</p>
+            <p class="err-sub">Sin demos semanales, el resultado es una sorpresa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="logo">
+      <div class="logo-sq">
+        <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><polygon points="3,20 8.5,3 10.5,3 6.5,20" fill="white"/></svg>
+      </div>
+      <span class="logo-text">VETA</span>
+    </div>
+  </div>
+</body>
+</html>

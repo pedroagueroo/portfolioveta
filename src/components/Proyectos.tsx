@@ -1,197 +1,280 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import AnimateIn from "./AnimateIn";
 
 const projects = [
   {
-    authors: "Nicolás Petito",
+    id: "01",
     name: "Once Unidos",
-    status: "1.200+ turnos/mes",
-    statusColor: "bg-emerald-600 text-white",
-    description: "Sistema de gestión para el club Once Unidos. Centraliza la reserva de canchas, integra pagos en línea y da al staff un panel propio para administrar toda la operación.",
+    client: "Club Deportivo",
+    description: "Sistema web completo de reserva de turnos con dos interfaces: pública para socios y panel de administración para el staff. Integra pagos en línea y elimina conflictos de horarios.",
+    metrics: [
+      { label: "Turnos gestionados", value: "1.200+" },
+      { label: "Conflictos", value: "Cero" }
+    ],
     stack: ["Next.js", "Supabase", "Tailwind"],
-    demo: "https://gestorturnos.vercel.app/",
-    image: "/images/once-unidos.png"
+    image: "/images/once-unidos.png",
+    demo: "https://gestorturnos.vercel.app/"
   },
   {
-    authors: "Nicolás Petito",
-    name: "Kaizer",
-    status: "En producción",
-    statusColor: "bg-blue-600 text-white",
-    description: "Web institucional con CMS propio para que el equipo de Kaizer actualice contenido sin depender de un desarrollador. Construida con foco en rendimiento y SEO.",
-    stack: ["Next.js", "Tailwind", "PostgreSQL"],
-    demo: "https://kaizer-servicios-three.vercel.app/",
-    image: "/images/kaizer.png"
+    id: "02",
+    name: "Kaizer Servicios",
+    client: "Empresa Industrial",
+    description: "Web institucional con CMS integrado. Permite al equipo actualizar catálogo, servicios y blog de manera autónoma, posicionando la trayectoria de la empresa con SEO local.",
+    metrics: [
+      { label: "Trayectoria", value: "+10 Años" },
+      { label: "Dependencia externa", value: "Eliminada" }
+    ],
+    stack: ["Next.js", "PostgreSQL", "Tailwind"],
+    image: "/images/kaizer.png",
+    demo: "https://kaizer-servicios-three.vercel.app/"
   },
   {
-    authors: "Nicolás Petito",
+    id: "03",
     name: "Equals",
-    status: "Tesis UTN",
-    statusColor: "bg-indigo-600 text-white",
-    description: "Plataforma de finanzas personales desarrollada como proyecto final de carrera en UTN. Gestión de billeteras, gráficos históricos, objetivos y dólar en tiempo real.",
+    client: "Finanzas Personales",
+    description: "Plataforma web de gestión financiera pensada para el contexto argentino. Gestión de billeteras, gráficos, objetivos de ahorro y dólar en tiempo real (PWA).",
+    metrics: [
+      { label: "Plataforma", value: "PWA" },
+      { label: "Cotizaciones", value: "Tiempo Real" }
+    ],
     stack: ["React", "Next.js", "Supabase"],
-    demo: "https://equalsgestion.com/",
-    image: "/images/equals.jpg"
+    image: "/images/equals.jpeg",
+    demo: "https://equalsgestion.com/"
   },
   {
-    authors: "Nicolás Petito",
+    id: "04",
+    name: "Traveris",
+    client: "SaaS B2B Agencias",
+    description: "SaaS multi-tenant para agencias de viaje. Centraliza reservas, clientes y caja contable. Arquitectura diseñada para escalar a múltiples agencias en la nube.",
+    metrics: [
+      { label: "Arquitectura", value: "Multi-tenant" },
+      { label: "Modelo", value: "SaaS B2B" }
+    ],
+    stack: ["Next.js", "AWS S3", "Prisma"],
+    image: "/images/traveris.png",
+    demo: "https://traverispro.vercel.app/"
+  },
+  {
+    id: "05",
+    name: "HoopStats",
+    client: "Dashboard Deportivo",
+    description: "Dashboard de estadísticas NBA con datos en vivo. Consumo de APIs deportivas, visualizaciones interactivas y capa de caché para máxima velocidad.",
+    metrics: [
+      { label: "Usuarios", value: "+20 Activos" },
+      { label: "Performance", value: "Redis Cache" }
+    ],
+    stack: ["React", "Node.js", "Redis"],
+    image: "/images/hoopstats.png",
+    demo: "https://www.hoopstats.com.ar/"
+  },
+  {
+    id: "06",
+    name: "DirectOrder",
+    client: "Ecosistema Gastronómico",
+    description: "Reemplaza múltiples herramientas costosas. Menú QR, pedidos directos por WhatsApp, cocina en tiempo real (KDS) y analytics propios sin comisiones.",
+    metrics: [
+      { label: "Comisiones", value: "0%" },
+      { label: "Setup", value: "30 segs" }
+    ],
+    stack: ["Next.js", "Supabase", "Zustand"],
+    image: "/images/directorder.png",
+    demo: "https://directorder-two.vercel.app/"
+  },
+  {
+    id: "07",
+    name: "ImportadosMDP",
+    client: "E-Commerce / Catálogo",
+    description: "Catálogo digital mobile-first con buscador instantáneo, dark mode y reseñas. Diseñado para maximizar la conversión hacia consultas directas por WhatsApp.",
+    metrics: [
+      { label: "Ventas", value: "+500" },
+      { label: "Calificación", value: "4.9/5.0" }
+    ],
+    stack: ["Next.js", "Tailwind"],
+    image: "/images/importadosmdp.png",
+    demo: "https://importadosmdp.vercel.app/"
+  },
+  {
+    id: "08",
     name: "Sector B",
-    status: "En producción",
-    statusColor: "bg-amber-500 text-white",
-    description: "Web para hamburguesería artesanal con menú interactivo y pedido directo por WhatsApp. Diseño mobile-first, sin app ni comisiones de intermediarios.",
+    client: "Gastronomía",
+    description: "Web para hamburguesería con menú interactivo y pedidos directo al WhatsApp del local. Experiencia mobile fluida que elimina apps de terceros.",
+    metrics: [
+      { label: "Canal", value: "WhatsApp" },
+      { label: "Intermediarios", value: "Cero" }
+    ],
     stack: ["React", "Tailwind"],
     image: "/images/sector-b.png"
-  },
-  {
-    authors: "Pedro",
-    name: "Traveris",
-    status: "Operativo",
-    statusColor: "bg-orange-500 text-white",
-    description: "SaaS B2B multi-tenant para agencias de viaje. Centraliza reservas, facturación y seguimiento de clientes en una sola plataforma. En uso real por VickaTurismo.",
-    stack: ["Next.js", "AWS S3", "Prisma"],
-    demo: "https://traverispro.vercel.app/",
-    repo: "https://github.com/pedroagueroo/traveris2-front.git",
-    image: "/images/traveris.png"
-  },
-  {
-    authors: "Aguero + Chino",
-    name: "HoopStats",
-    status: "+20 usuarios",
-    statusColor: "bg-violet-600 text-white",
-    description: "Dashboard de estadísticas NBA con datos en tiempo real. Consume APIs deportivas y presenta visualizaciones dinámicas para fanáticos y analistas del juego.",
-    stack: ["React", "Node.js", "Redis"],
-    demo: "https://www.hoopstats.com.ar/",
-    repo: "https://github.com/augussto12/HoopStats.git",
-    image: "/images/hoopstats.png"
-  },
-  {
-    authors: "Aguero + Chino",
-    name: "DirectOrder",
-    status: "Lanzamiento",
-    statusColor: "bg-slate-600 text-white",
-    description: "Ecosistema gastronómico completo: POS interno, tienda online propia y gestión de comandas. Elimina la dependencia de apps de terceros y sus comisiones.",
-    stack: ["Next.js", "Supabase", "Zustand"],
-    demo: "https://directorder-two.vercel.app/",
-    repo: "https://github.com/pedroagueroo/directorder.git",
-    image: "/images/directorder.png"
-  },
-  {
-    authors: "Pedro",
-    name: "ImportadosMDP",
-    status: "Mobile-First",
-    statusColor: "bg-rose-600 text-white",
-    description: "Catálogo digital para tienda de ropa importada. Dark mode, buscador en tiempo real y experiencia mobile-first diseñada para convertir visitas en consultas directas.",
-    stack: ["Next.js", "Tailwind"],
-    demo: "https://importadosmdp.vercel.app/",
-    repo: "https://github.com/nicopetito/importadosmdp.git",
-    image: "/images/importadosmdp.png"
   }
 ];
 
 export default function Proyectos() {
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [selectedProject]);
+
   return (
-    <section id="proyectos" className="section-padding bg-white border-t border-slate-100">
+    <section id="proyectos" className="py-24 md:py-32 bg-white">
       <div className="container-custom">
         <AnimateIn>
-          <p className="eyebrow mb-8">05 &mdash; Proyectos</p>
-        </AnimateIn>
-
-        <AnimateIn delay={100}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-16">
-            <div>
-              <h2 className="font-sans font-bold text-4xl md:text-5xl text-slate-900 leading-tight mb-4">
-                Productos reales.<br />No ejercicios.
-              </h2>
-              <span aria-hidden="true" className="block h-0.5 w-10 bg-brand rounded-full" />
-            </div>
-            <div className="flex items-center">
-              <p className="text-lg text-slate-600 leading-relaxed font-medium max-w-xl">
-                Cada proyecto resuelve un problema de negocio concreto. Estos
-                son algunos de los sistemas y productos que construimos y que
-                hoy están en uso real.
-              </p>
-            </div>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-8 h-[1px] bg-slate-300 block"></span>
+            <p className="font-mono text-xs font-semibold tracking-[0.2em] uppercase text-slate-500">
+              Casos de estudio
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+            <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-slate-900 tracking-tight">
+              Impacto real en negocios.
+            </h2>
+            <p className="text-lg text-slate-500 max-w-md font-medium leading-relaxed">
+              No mostramos código; mostramos resultados. Plataformas operativas que ahorran horas y aumentan facturación.
+            </p>
           </div>
         </AnimateIn>
 
-        <AnimateIn delay={100}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Compact Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_10px_36px_rgba(0,0,0,0.08)] hover:border-brand/20 hover:-translate-y-1 transition-all duration-300 group flex flex-col"
-            >
-              <div className="aspect-video w-full relative overflow-hidden bg-slate-100">
-                <Image
-                  src={project.image}
-                  alt={`Preview de ${project.name}`}
-                  fill
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-start justify-between gap-3 mb-4">
-                  <div>
-                    <h3 className="font-sans font-bold text-xl text-slate-900 leading-tight mb-1">
-                      {project.name}
-                    </h3>
-                    <p className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
-                      {project.authors}
-                    </p>
-                  </div>
-                  <span className={`shrink-0 inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${project.statusColor}`}>
-                    {project.status}
-                  </span>
+            <AnimateIn key={project.id} delay={index * 50}>
+              <div 
+                onClick={() => setSelectedProject(project)}
+                className="group cursor-pointer flex flex-col bg-slate-50 border border-slate-100 rounded-2xl overflow-hidden hover:border-brand/30 hover:shadow-[0_8px_30px_rgba(0,69,139,0.08)] transition-all duration-300 h-full"
+              >
+                {/* Image Cover */}
+                <div className="relative w-full aspect-[4/3] bg-white overflow-hidden border-b border-slate-100">
+                  <Image
+                    src={project.image}
+                    alt={`Preview de ${project.name}`}
+                    fill
+                    className="object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  />
                 </div>
+                
+                {/* Card Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <p className="font-mono text-[10px] font-bold tracking-[0.15em] uppercase text-brand mb-2">
+                    {project.client}
+                  </p>
+                  <h3 className="font-sans font-extrabold text-xl text-slate-900 mb-4">
+                    {project.name}
+                  </h3>
+                  
+                  <div className="mt-auto pt-4 border-t border-slate-200/60 flex justify-between items-center">
+                    <span className="font-mono text-[10px] font-bold tracking-widest uppercase text-slate-400 group-hover:text-brand transition-colors flex items-center gap-2">
+                      Ver detalle
+                      <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </AnimateIn>
+          ))}
+        </div>
+      </div>
 
-                <p className="text-sm text-slate-600 leading-relaxed mb-5 flex-grow">
-                  {project.description}
+      {/* Modal / Dialog */}
+      {selectedProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-8">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" 
+            onClick={() => setSelectedProject(null)}
+          ></div>
+          
+          {/* Modal Content */}
+          <div className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] z-10 animate-in fade-in zoom-in-95 duration-200">
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-4 right-4 z-20 w-10 h-10 bg-black/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/30 transition-colors"
+              aria-label="Cerrar modal"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="flex flex-col h-full overflow-y-auto">
+              {/* Image Top */}
+              <div className="w-full relative bg-slate-900 flex-shrink-0">
+                <div className="relative w-full aspect-video md:aspect-[21/9]">
+                  <Image
+                    src={selectedProject.image}
+                    alt={`Mockup de ${selectedProject.name}`}
+                    fill
+                    className="object-cover object-top opacity-90"
+                  />
+                  {/* Gradient Overlay so close button is always visible */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+              </div>
+              
+              {/* Info Bottom */}
+              <div className="w-full p-8 md:p-10 flex flex-col">
+                <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-brand mb-2">
+                  {selectedProject.client}
+                </p>
+                <h3 className="font-sans font-extrabold text-3xl md:text-4xl text-slate-900 mb-6 leading-tight">
+                  {selectedProject.name}
+                </h3>
+                
+                <p className="text-slate-600 mb-8 leading-relaxed font-medium text-lg">
+                  {selectedProject.description}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 bg-slate-50 border border-slate-200 text-slate-500 font-mono text-[10px] rounded"
-                    >
-                      {tech}
-                    </span>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 p-6 bg-slate-50 rounded-xl border border-slate-100">
+                  {selectedProject.metrics.map((metric, i) => (
+                    <div key={i} className="col-span-1 md:col-span-2">
+                      <p className="font-sans font-extrabold text-2xl text-slate-900 mb-1 tracking-tight">{metric.value}</p>
+                      <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500 font-bold">{metric.label}</p>
+                    </div>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-                  {project.repo ? (
-                    <a
-                      href={project.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-semibold text-slate-400 hover:text-slate-900 transition-colors flex items-center gap-1.5"
-                    >
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                      </svg>
-                      Repo
-                    </a>
-                  ) : <span />}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-auto pt-4 border-t border-slate-100">
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.stack.map(tech => (
+                      <span key={tech} className="px-3 py-1.5 bg-white text-slate-600 font-mono text-[10px] uppercase tracking-wider font-bold rounded-full border border-slate-200 shadow-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
 
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
+                  {selectedProject.demo ? (
+                    <a 
+                      href={selectedProject.demo} 
+                      target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-xs font-semibold text-brand hover:text-brand-dark transition-colors flex items-center gap-1 group/link"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#0a0f1c] text-white rounded-lg font-bold hover:bg-brand transition-colors text-sm shadow-md"
                     >
-                      Ver demo
-                      <span className="group-hover/link:translate-x-1 transition-transform inline-block">→</span>
+                      Visitar Web
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
                     </a>
+                  ) : (
+                    <button disabled className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-slate-100 text-slate-400 rounded-lg font-bold text-sm cursor-not-allowed border border-slate-200">
+                      Demo Privada
+                    </button>
                   )}
                 </div>
               </div>
             </div>
-          ))}
           </div>
-        </AnimateIn>
-      </div>
+        </div>
+      )}
+
     </section>
   );
 }

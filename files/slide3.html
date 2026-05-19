@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1080px; overflow: hidden; background: #0a0f1c; font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif; }
+
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,69,139,0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,69,139,0.09) 1px, transparent 1px);
+    background-size: 54px 54px;
+  }
+  .stripe { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #00458B; }
+
+  .wrap {
+    position: relative; z-index: 2;
+    width: 100%; height: 100%;
+    padding: 52px 56px 48px 56px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .eyebrow {
+    font-family: 'Courier New', monospace; font-size: 13px;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); font-weight: 700;
+  }
+  .num {
+    position: absolute; top: 52px; right: 56px;
+    font-family: 'Courier New', monospace; font-size: 14px;
+    color: rgba(255,255,255,0.22);
+  }
+  .headline {
+    font-size: 72px; font-weight: 900;
+    line-height: 0.97; letter-spacing: -0.02em; color: #ffffff;
+    margin-bottom: 36px;
+  }
+  .accent { color: #60a5fa; }
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 22px; position: relative; }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute; left: 17px; top: 38px;
+    width: 2px; height: 22px;
+    background: rgba(0,69,139,0.4);
+  }
+  .circle {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid #00458B;
+    color: #60a5fa; font-weight: 900; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-family: 'Courier New', monospace;
+  }
+  .step-title {
+    font-family: Arial, sans-serif; font-size: 17px;
+    font-weight: 700; color: white; margin-bottom: 4px;
+  }
+  .step-sub {
+    font-family: Arial, sans-serif; font-size: 14px;
+    color: rgba(255,255,255,0.42);
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-sq {
+    width: 36px; height: 36px; background: #00458B; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-text { font-size: 18px; font-weight: 900; letter-spacing: 0.2em; color: white; }
+</style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="stripe"></div>
+  <div class="wrap">
+    <div><span class="eyebrow">Cómo lo hacemos</span></div>
+    <span class="num">03/05</span>
+    <div>
+      <p class="headline">Del problema<br>al sistema.<br><span class="accent">Sin humo.</span></p>
+      <div class="steps">
+        <div class="step">
+          <div class="circle">1</div>
+          <div>
+            <p class="step-title">Entendemos el negocio</p>
+            <p class="step-sub">No escribimos código hasta entender el problema real.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="circle">2</div>
+          <div>
+            <p class="step-title">Diseñamos la arquitectura</p>
+            <p class="step-sub">Decisiones técnicas con propósito concreto.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="circle">3</div>
+          <div>
+            <p class="step-title">Construimos y mostramos cada semana</p>
+            <p class="step-sub">Demo accesible desde el sprint 1. Cero cajas negras.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="logo">
+      <div class="logo-sq">
+        <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><polygon points="3,20 8.5,3 10.5,3 6.5,20" fill="white"/></svg>
+      </div>
+      <span class="logo-text">VETA</span>
+    </div>
+  </div>
+</body>
+</html>

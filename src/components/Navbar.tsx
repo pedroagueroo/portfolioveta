@@ -35,27 +35,26 @@ export default function Navbar() {
       >
         <div className="container-custom flex items-center justify-between">
           <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
-            <Logo isDark={!scrolled} />
+            <Logo isDark={false} />
           </Link>
 
-          <nav className={`hidden md:flex items-center gap-8 text-sm font-medium ${scrolled ? "text-slate-600" : "text-slate-300"}`}>
-            <Link href="#estudio" className={`transition-colors ${scrolled ? "hover:text-brand" : "hover:text-white"}`}>Estudio</Link>
-            <Link href="#proyectos" className={`transition-colors ${scrolled ? "hover:text-brand" : "hover:text-white"}`}>Proyectos</Link>
-            <Link href="#equipo" className={`transition-colors ${scrolled ? "hover:text-brand" : "hover:text-white"}`}>Equipo</Link>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+            <Link href="#estudio" className="transition-colors hover:text-brand">Estudio</Link>
+            <Link href="#proyectos" className="transition-colors hover:text-brand">Proyectos</Link>
+            <Link href="#equipo" className="transition-colors hover:text-brand">Equipo</Link>
           </nav>
 
           <div className="flex items-center gap-4">
             <Link
               href="#contacto"
-              className={`hidden md:flex group items-center gap-2 text-sm font-medium transition-colors ${scrolled ? "text-slate-900 hover:text-brand" : "text-white hover:text-slate-200"}`}
+              className="hidden md:flex group items-center gap-2 text-sm font-semibold bg-[#0a0f1c] text-white px-6 py-2.5 rounded-full hover:bg-brand transition-colors"
             >
               Hablemos
-              <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
             </Link>
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className={`md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 ${scrolled ? "text-slate-900" : "text-white"}`}
+              className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 text-slate-900"
               aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             >
               <span className={`block w-6 h-0.5 bg-current transition-all duration-300 origin-center ${menuOpen ? "translate-y-2 rotate-45" : ""}`} />
