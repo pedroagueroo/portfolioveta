@@ -19,7 +19,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-slate-600 mb-12 font-medium leading-relaxed">
-            Sin intermediarios ni promesas vacías. Tres ingenieros UTN trabajando directo con el código y la arquitectura de cada proyecto.
+            Sin intermediarios ni promesas vacías. Un equipo de desarrolladores trabajando directo con el código y la arquitectura de cada proyecto.
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
